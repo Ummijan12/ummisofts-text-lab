@@ -19,4 +19,4 @@ A high-performance, real-time font and text animation generator. This tool allow
 ## 📂 Installation & Usage
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/ummisoftes-text-lab.git](https://github.com/YOUR_USERNAME/ummisoftes-text-lab.git)
+   git clone [https://github.com/Ummijan12/ummisoftes-text-lab.git](https://github.com/Ummijan12/ummisoftes-text-lab.git)
