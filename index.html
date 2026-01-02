@@ -366,6 +366,38 @@ const charMaps = {
 
         input.addEventListener('input', render);
         render(); // Initial load
+        function createCard(label, text, className = "", inlineStyle = "") {
+    const card = document.createElement('div');
+    card.className = 'font-card';
+    // We add an ID or unique class to the preview-text so we can target it for the download
+    card.innerHTML = `
+        <div>
+            <span class="style-label">${label}</span>
+            <div class="preview-target" style="padding: 20px; background: #1e293b;">
+                <div class="preview-text ${className}" style="${inlineStyle}">${text}</div>
+            </div>
+        </div>
+        <div style="display: flex; gap: 10px; margin-top: 15px;">
+            <button class="copy-btn" style="flex: 1;" onclick="copyText(this, '${text}')">Copy</button>
+            <button class="copy-btn" style="flex: 1; background: var(--accent); color: black;" onclick="downloadImage(this)">PNG</button>
+        </div>
+    `;
+    results.appendChild(card);
+}
+        function downloadImage(btn) {
+    // Find the preview container relative to the clicked button
+    const target = btn.parentElement.parentElement.querySelector('.preview-target');
+    
+    html2canvas(target, {
+        backgroundColor: "#1e293b", // Matches your card background
+        scale: 2 // Makes the image high resolution
+    }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'ummisoftes-style.png';
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+    });
+}
     </script>
 <footer style="margin-top: 50px; padding: 40px; background: #0b1120; border-top: 1px solid #334155; width: 100%; text-align: center; color: #64748b; font-size: 0.9rem;">
     <div style="margin-bottom: 15px;">
@@ -382,3 +414,4 @@ const charMaps = {
 </body>
 
 </html>
+
